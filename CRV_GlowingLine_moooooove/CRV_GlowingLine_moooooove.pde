@@ -1,10 +1,7 @@
 final short NUM = 7;
 PVector[] coords = new PVector[NUM];
 
-int range = 10;
-
-float[] ax = new float[NUM];
-float[] ay = new float[NUM];
+int range = 4;
 
 void setup(){
   size(900,600);
@@ -20,16 +17,22 @@ void setup(){
 }
 
 void draw(){
- /*  // Put a new value at the end of the array
-  ax[num-1] += random(-range, range);
-  ay[num-1] += random(-range, range);
+ 
+  //Wiggle
+  
+  for(int i = 0; i < coords.length; i++){
+  // Put a new value at the end of the array
+  coords[i].x += random(-range, range);
+  coords[i].y += random(-range, range);
 
   // Constrain all points to the screen
-  ax[num-1] = constrain(ax[num-1], 0, width);
-  ay[num-1] = constrain(ay[num-1], 0, height);
-  */
- smooth();
+  coords[i].x = constrain(coords[i].x, 0, width);
+  coords[i].y = constrain(coords[i].y, 0, height);
+  }
+
  
+//----------------------------[THIS STUFF WORKS]-------------------------------------------// 
+ smooth();
  //Blur = glow behind the line
  stroke(255);
  noFill();
@@ -44,7 +47,6 @@ for(int i = 0; i < coords.length; i++){
  stroke(255);
  strokeWeight(6);
  noFill();
- 
  beginShape();
 for(int i = 0; i < coords.length; i++){
   curveVertex(coords[i].x, coords[i].y); //first control point
