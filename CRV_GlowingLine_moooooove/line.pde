@@ -1,10 +1,12 @@
-class line {
+class Line {
   
 final short NUM = 7;
 PVector[] coords = new PVector[NUM];
 
-int range = 4;
+int range = 2;
 
+
+void setup(){
   coords[0] = new PVector(40,40);
   coords[1] = new PVector(40,40);
   coords[2] = new PVector(80,60);
