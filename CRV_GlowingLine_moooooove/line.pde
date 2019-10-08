@@ -3,21 +3,24 @@ class Line {
 final short NUM = 7;
 PVector[] coords = new PVector[NUM];
 
-int range = 2;
+int range = 6;
 
+//Set middle 3 to random within the constraints of (x,y,h,w)
 
-void setup(){
+Line(int x, int y, int h, int w){
   coords[0] = new PVector(40,40);
   coords[1] = new PVector(40,40);
-  coords[2] = new PVector(80,60);
-  coords[3] = new PVector(300,300);
-  coords[4] = new PVector(260,520);
+  coords[2] = new PVector(int (random(x,w)), int (random(y,h)));
+  coords[3] = new PVector(int (random(x,w)), int (random(y,h)));
+  coords[4] = new PVector(int (random(x,w)), int (random(y,h)));
   coords[5] = new PVector(650,450);
   coords[6] = new PVector(650,450);
 }
 
+
 void update(){
-  //Wiggle
+
+//--------------------------------------------------------------------//
   
   for(int i = 0; i < coords.length; i++){
   // Put a new value at the end of the array
