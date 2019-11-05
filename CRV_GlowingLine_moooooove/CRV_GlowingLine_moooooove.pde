@@ -7,7 +7,14 @@ void setup(){
   background(0);
   
   for( int i = 0; i<= numberOfLines; i++){
-    lines.add(new Line(int(random(0,250)), int(random(0,height)), int(random(500,width)), int(random(0,height)))); //make box
+    int minwidth = 10;
+    int minheight = 20;
+    
+    int y = 250;
+   
+    
+    lines.add(new Line(int(random(minwidth,250)), int(random(minheight,height - y)), int(random(500,width - y)), int(random(minheight,height - y))));
+    
   }
 }
 
@@ -15,7 +22,14 @@ void setup(){
   
 void keyPressed(){ 
   if(key == 'a' || key == 'A') { //add a new line when 'A' is pressed
-    lines.add(new Line(int(random(0,250)), int(random(0,height)), int(random(300,width)), int(random(0,height))));  
+    int minwidth = 10;
+    int minheight = 20 ;
+    
+    int y = 250;
+   
+    
+    lines.add(new Line(int(random(minwidth,250)), int(random(minheight,height - y)), int(random(500,width - y)), int(random(minheight,height - y))));
+    
   }
   
   if(key == 'd' || key == 'D') { //subtract a line when 'D' is pressed
