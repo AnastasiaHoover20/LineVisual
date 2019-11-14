@@ -7,7 +7,7 @@ class Line {
 final short NUM = 7;
 PVector[] coords = new PVector[NUM];
 
-int range = 6; //range of movement
+int range = 6; //range of movement (we want to change the speed. slow it down the longer you're in front of it. range start 6
 
 //The line... why was this so difficult... Don't mess with it ever again. 
 
@@ -27,12 +27,26 @@ Line(int x, int y, int h, int w){
   coords[6] = new PVector(x2,y2);
 }
 
+//------------[RANGE CHANGE]-----------------//
+void slowdown(){
+  range = range -1;
+  
+  if(range < 0){
+    range = range + 1;
+  }  
+}
+
+void speedup(){
+  range = range + 1;
+}
+
+
 
 void update(){
 
 //------------------[BROWNIAN MOVEMENT]---------------------------------//
   
- /* for(int i = 0; i < coords.length; i++){
+  for(int i = 0; i < coords.length; i++){
   // Put a new value at the end of the array
   coords[i].x += random(-range, range);
   coords[i].y += random(-range, range);
@@ -40,20 +54,23 @@ void update(){
   // Constrain all points to the screen
   coords[i].x = constrain(coords[i].x, 0, width);
   coords[i].y = constrain(coords[i].y, 0, height);
-  }*/
+  }
 
  
 //----------------------[LINE AND GLOW LINE]----------------------------// 
  smooth();
  //Blur = glow behind the line
  stroke(255);
+ strokeWeight(1);
  noFill();
  beginShape();
 for(int i = 0; i < coords.length; i++){
   curveVertex(coords[i].x, coords[i].y); //first control point
 }
  endShape();
- filter( BLUR, 4);
+ 
+ 
+/*filter( BLUR, 4);
  
  //line in front
  stroke(255);
@@ -63,6 +80,8 @@ for(int i = 0; i < coords.length; i++){
 for(int i = 0; i < coords.length; i++){
   curveVertex(coords[i].x, coords[i].y); //first control point
 }
- endShape();
+ endShape();*/
+ 
+ 
 }
 }
