@@ -1,6 +1,16 @@
 ArrayList<Line> lines = new ArrayList<Line>();
 int numberOfLines = 5;
 
+//------COLOR---------//
+color[] colors = {
+#F9557B,
+#FA9F6B,
+#F9C35E,
+#579D9C,
+#BB32A1,
+};
+
+
 //---------COUNTER-----------//
 int counter;
 int t = 0;
@@ -54,7 +64,7 @@ String[] cameras = Capture.list();
     int minheight = 20;
     int y = 250;
     
-    lines.add(new Line(int(random(minwidth,250)), int(random(minheight,height - y)), int(random(500,width - y)), int(random(minheight,height - y)))); 
+    lines.add(new Line(int(random(minwidth,250)), int(random(minheight,height - y)), int(random(500,width - y)), int(random(minheight,height - y)), randomColor())); 
   }
 }
 
@@ -66,7 +76,7 @@ if(key == 'a' || key == 'A') { //add a new line when 'A' is pressed
     int minheight = 20 ;
     int y = 250;
    
-    lines.add(new Line(int(random(minwidth,250)), int(random(minheight,height - y)), int(random(500,width - y)), int(random(minheight,height - y))));
+    lines.add(new Line(int(random(minwidth,250)), int(random(minheight,height - y)), int(random(500,width - y)), int(random(minheight,height - y)), randomColor()));
   }
   
 if(key == 'd' || key == 'D') { //subtract a line when 'D' is pressed
@@ -104,8 +114,13 @@ if ( (counter+1000) < millis() ){ //counter set for 1 minute
 
 if (faces!=null){ //draws the box around faces
   for (int i = 0; i < faces.length; i++) {
+    fill(#d3d3d3); //makes a small pixel in the corner so I know it's detecting a face
+    noStroke();
+    rect(1, 1, 5, 5);
+  
+  
   noFill();
-  stroke(0, 255, 0);
+  stroke(0); //the box wont be visable to the viewer but it works so dont worry about it
   strokeWeight(3);
   rect(faces[i].x, faces[i].y, faces[i].width, faces[i].height);
   }
@@ -119,7 +134,7 @@ if(faces.length > 0 && 0 == a ){ //add line every 12 seconds ( % 12 {0 - 12})
   int minheight = 20 ;
   int y = 250;
  
-  lines.add(new Line(int(random(minwidth,250)), int(random(minheight,height - y)), int(random(500,width - y)), int(random(minheight,height - y)))); 
+  lines.add(new Line(int(random(minwidth,250)), int(random(minheight,height - y)), int(random(500,width - y)), int(random(minheight,height - y)), randomColor())); 
 }
 
 //-----------------------------------[DELETE LINES]----------------------------------//
@@ -134,7 +149,7 @@ if(faces.length == 0 && 0 == d) {
   int minheight = 20 ;
   int y = 250;
  
-  lines.add(new Line(int(random(minwidth,250)), int(random(minheight,height - y)), int(random(500,width - y)), int(random(minheight,height - y)))); 
+  lines.add(new Line(int(random(minwidth,250)), int(random(minheight,height - y)), int(random(500,width - y)), int(random(minheight,height - y)), randomColor())); 
   }
 }
 
@@ -163,6 +178,12 @@ if(faces.length == 0 && 0 == f){
     myLine.update();
   }
 }
+
+color randomColor(){
+  int r = int(random(0,colors.length));
+  return colors[r];
+}
+
 
 
 void captureEvent(Capture capture){
