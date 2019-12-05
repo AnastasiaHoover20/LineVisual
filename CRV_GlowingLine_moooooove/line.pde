@@ -9,14 +9,21 @@ PVector[] coords = new PVector[NUM];
 
 int range = 6; //range of movement (we want to change the speed. slow it down the longer you're in front of it. range start 6
 
+//--------[COLOR]-------------//
+color linecolor = #F9557B;
+
+
+
 //The line... why was this so difficult... Don't mess with it ever again. 
 
-Line(int x, int y, int h, int w){
+Line(int x, int y, int h, int w, color c){
   
  x1 = int(random(x,x+h));
  y1 = y; 
  x2 = int(random(x,x+h));
  y2 = y+w;
+ 
+ linecolor = c;
   
   coords[0] = new PVector(x1,y1); //set int so it can repeat (first and last)
   coords[1] = new PVector(x1,y1);
@@ -57,12 +64,19 @@ void update(){
   }
 
  
-//----------------------[LINE AND GLOW LINE]----------------------------// 
+//----------------------[LINE AND GLOW LINE (COLOR)]----------------------------// 
  smooth();
  //Blur = glow behind the line
- stroke(255);
+ stroke(linecolor);
  strokeWeight(1);
  noFill();
+ 
+ 
+ /*stroke(colors[c]);
+ strokeWeight(1);
+ noFill();
+*/
+ 
  beginShape();
 for(int i = 0; i < coords.length; i++){
   curveVertex(coords[i].x, coords[i].y); //first control point
